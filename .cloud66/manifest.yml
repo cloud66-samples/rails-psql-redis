@@ -1,14 +1,35 @@
-staging: # 1. Environment type
-  rails: # 2. Application type
-    servers:
-      server: # 3. Server type (optional)
-        unique_name: web
+staging:
+  environment_variables:
+    PASSENGER_ENTERPRISE_DOWNLOAD_TOKEN: b2414d5ef619ecfe31ccd10263daaf60e3ba87cd3d2675613e04dc0382b6af0b
+  rails:
+    configuration:
+      ruby_version: 2.2.2
+      vpc_id: vpc-f6a27e93
+      nginx:
+        cors: true
+    server:
+        unique_name: parcel
+        subnet_id: subnet-c6a918a3
         vendor: aws
-        region: us-east-1
-        size: t1.micro
-  redis:
-    servers:
-      server: external
+        region: ap-southeast-2
+        size: t2.medium
+        root_disk_size: 50
+        availability_zone: ap-southeast-2a
   postgresql:
-    servers:
-      server: external
+    configuration:
+      version: 9.4.4
+      postgis: true
+      postgis:
+        version: 2.1.7
+    server:
+      same_as: parcel
+  redis:
+    configuration:
+      version: 3.0.2
+    server:
+      same_as: parcel
+  elasticsearch:
+    configuration:
+      version: 1.6.0
+    server:
+      same_as: parcel
