@@ -1,4 +1,0 @@
-production:
-    redis:
-        configuration:
-            version: 3.2
